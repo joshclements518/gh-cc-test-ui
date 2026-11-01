@@ -19,8 +19,13 @@ void main() {
     expect(find.text('Home'), findsWidgets);
 
     // Find and tap the Create Poll action tile
-    expect(find.text('Create Poll'), findsOneWidget);
-    await tester.tap(find.text('Create Poll'));
+    // Scroll to make it visible since it may be off-screen
+    final createPollFinder = find.text('Create Poll');
+    await tester.ensureVisible(createPollFinder);
+    await tester.pumpAndSettle();
+
+    expect(createPollFinder, findsOneWidget);
+    await tester.tap(createPollFinder);
     await tester.pumpAndSettle();
 
     // Verify we're on the create poll screen
@@ -96,7 +101,10 @@ void main() {
     await tester.pumpAndSettle();
 
     // Navigate to create poll
-    await tester.tap(find.text('Create Poll'));
+    final createPollFinder = find.text('Create Poll');
+    await tester.ensureVisible(createPollFinder);
+    await tester.pumpAndSettle();
+    await tester.tap(createPollFinder);
     await tester.pumpAndSettle();
 
     // Create first poll
@@ -115,7 +123,10 @@ void main() {
     await tester.pumpAndSettle();
 
     // Create second poll
-    await tester.tap(find.text('Create Poll'));
+    final createPollFinder2 = find.text('Create Poll');
+    await tester.ensureVisible(createPollFinder2);
+    await tester.pumpAndSettle();
+    await tester.tap(createPollFinder2);
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextFormField), 'Second poll');
     await tester.tap(find.text('Select deadline'));
