@@ -7,22 +7,20 @@ class HlCard extends StatelessWidget {
   final EdgeInsets padding;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: padding,
-      decoration: BoxDecoration(
-        color: HlTokens.card,
+    // Material (not DecoratedBox) so nested ListTiles paint ink/background correctly under test.
+    return Material(
+      color: HlTokens.card,
+      elevation: 1,
+      shadowColor: HlTokens.ink.withValues(alpha: 0.06),
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(HlTokens.radiusCard),
-        border: Border.all(color: HlTokens.line),
-        boxShadow: [
-          BoxShadow(
-            color: HlTokens.ink.withOpacity(0.06),
-            blurRadius: 24,
-            offset: const Offset(0, 10),
-          ),
-        ],
+        side: const BorderSide(color: HlTokens.line),
       ),
-      child: child,
+      clipBehavior: Clip.antiAlias,
+      child: Padding(
+        padding: padding,
+        child: SizedBox(width: double.infinity, child: child),
+      ),
     );
   }
 }

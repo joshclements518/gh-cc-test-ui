@@ -12,5 +12,6 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
-      - run: flutter analyze
+      # Fail on errors/warnings; seed has many info lints that should not block the pipeline.
+      - run: flutter analyze --no-fatal-infos
       - run: flutter test
