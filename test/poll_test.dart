@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:harborline_navigator/app.dart';
 import 'package:harborline_navigator/features/polls/poll_create_screen.dart';
 import 'package:harborline_navigator/services/services.dart';
 import 'package:harborline_navigator/state/app_state.dart';
