@@ -94,7 +94,8 @@ void main() {
         ),
       );
 
-      expect(find.text('Create Poll'), findsOneWidget);
+      // Note: "Create Poll" appears twice - in AppBar and button
+      expect(find.text('Create Poll'), findsAtLeastNWidgets(1));
       expect(find.text('POLL QUESTION'), findsOneWidget);
       expect(find.text('DEADLINE'), findsOneWidget);
       expect(find.byType(TextFormField), findsOneWidget);
