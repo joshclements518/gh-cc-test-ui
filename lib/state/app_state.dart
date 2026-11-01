@@ -63,6 +63,19 @@ class AppState extends ChangeNotifier {
     lastHybridResult = '$name submitted (demo)';
     notifyListeners();
   }
+
+  Future<String> createPoll({
+    required String question,
+    required DateTime deadline,
+  }) async {
+    final poll = services.polls.createPoll(
+      question: question,
+      deadline: deadline,
+    );
+    services.analytics.track('poll_created', {'poll_id': poll.id});
+    notifyListeners();
+    return poll.id;
+  }
 }
 
 class AppScope extends InheritedNotifier<AppState> {
