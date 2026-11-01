@@ -1,6 +1,12 @@
 # gh-cc-test-ui
 
-Synthetic **UI** reference app for the Ash accelerator feature journey (Increment A).
+Flutter (Dart) UI product repo for AI Control Plane dual-repo demos.
 
-Calls the Accel Tasks API (`API_BASE_URL`, default `http://127.0.0.1:4000`) and renders a task list.
-Contract consumer: `src/contract.js` pins the expected OpenAPI version from the API repo.
+Seeded from `joshclements518/gh-cc-test` `app/` (Harborline Navigator demo).
+
+```bash
+flutter pub get && flutter analyze && flutter test
+flutter run -d web-server --web-hostname=0.0.0.0 --web-port=7357
+```
+
+Ticketing / stories stay on `joshclements518/gh-cc-test`. API code lives in `joshclements518/gh-cc-test-api`.
