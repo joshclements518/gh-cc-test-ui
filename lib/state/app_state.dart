@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../data/models.dart';
 import '../services/services.dart';
 
 enum VoyageMode { atHome, onBoard }
@@ -62,6 +63,17 @@ class AppState extends ChangeNotifier {
     await services.hybrid.openFlow(name);
     lastHybridResult = '$name submitted (demo)';
     notifyListeners();
+  }
+
+  String createPoll({required String question, required DateTime deadline}) {
+    final pollId = services.polls.createPoll(question: question, deadline: deadline);
+    services.analytics.track('poll_created', {'pollId': pollId});
+    notifyListeners();
+    return pollId;
+  }
+
+  Poll? getPoll(String id) {
+    return services.polls.getPoll(id);
   }
 }
 
